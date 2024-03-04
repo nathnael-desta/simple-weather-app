@@ -8,12 +8,7 @@ function grapher(latitude, longitude, day) {
 	console.log(tempsProto);
 	*/
 	console.log(temps);
-
-	console.log(Object.keys(temps));
-
-	for (const key in temps) {
-		console.log(key)
-	}
+	
   
   new Chart(ctx, {
     type: "line",
