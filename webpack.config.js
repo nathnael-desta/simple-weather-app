@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const StylelintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -44,7 +45,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Development',
       template: './src/index.ejs'
-    }),
+    })
   ],
   optimization: {
     runtimeChunk: 'single',
