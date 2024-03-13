@@ -1,17 +1,11 @@
 const ctx = document.getElementById("chart");
-
-
-
-
-grapher(9.0192, 38.7525, 0);
-
-
-
-async function grapher(latitude, longitude, day) {
+let c;
+export default async function grapher(latitude, longitude, day, day_night) {
 	const temps = await getDaily(latitude, longitude);
 	const dayTemp = temps[day];
-  
-	new Chart(ctx, {
+  let color = day_night == 0 ? "rgb(250, 158, 66)" : 'rgb(113,63,253)';
+
+	c = new Chart(ctx, {
 	  type: "line",
 	  data: {
 		labels: [
@@ -44,6 +38,7 @@ async function grapher(latitude, longitude, day) {
 		  {
 			label: "Temp in C°",
 			data: dayTemp,
+      borderColor: color,
 			borderWidth: 1,
 		  },
 		],
@@ -56,7 +51,14 @@ async function grapher(latitude, longitude, day) {
 		},
 	  },
 	});
+
+
   }
+
+export function destroy() {
+  c.destroy()
+}
+  
 
 async function getDaily(latitude, longitude) {
   try {

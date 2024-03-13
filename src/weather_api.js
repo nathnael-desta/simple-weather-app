@@ -1,6 +1,5 @@
 export default async function getWeather(place , day = 0) {
     try {
-        console.log(place);
         let location = place.split(" ").join("-");
         let responseForcast = await fetch(
             `https://api.weatherapi.com/v1/forecast.json?key=44b21494fc7747369bb71227242602&q=${location}&days=3`, {
@@ -29,6 +28,16 @@ export default async function getWeather(place , day = 0) {
         let precipitation = responseForcastJson.forecast.forecastday[day].hour[hour].precip_mm;
         let rain = responseForcastJson.forecast.forecastday[day].day.daily_chance_of_rain;
         let condition = responseForcastJson.forecast.forecastday[day].hour[hour].condition.code;
+        let latitude = responseForcastJson.location.lat;
+        let longitude = responseForcastJson.location.lon;
+        let local_hour = Number.parseFloat(responseForcastJson.location.localtime.split(" ")[1].split(":")[0]);
+        let day_night;
+        if (local_hour < 18 && local_hour > 6) {
+            day_night = 0;
+        } else {
+            day_night = 1;
+        }
+        
 
         return {
             responseForcastJson,
@@ -44,7 +53,11 @@ export default async function getWeather(place , day = 0) {
             min,
             precipitation,
             rain,
-            condition
+            condition,
+            latitude,
+            longitude,
+            day_night,
+            local_hour
         }
     } catch (e) {
         console.error("the error is ", e);
