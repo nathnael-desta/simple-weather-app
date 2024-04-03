@@ -46,6 +46,10 @@
     box-sizing: border-box;
 }
 
+body {
+    zoom: 75%;
+}
+
 body::-webkit-scrollbar {
     display: none;
 }
