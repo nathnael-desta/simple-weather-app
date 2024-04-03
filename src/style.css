@@ -47,8 +47,8 @@
     
 }
 
-body {
-    
+html {
+    zoom: 75%;
 }
 
 body::-webkit-scrollbar {
